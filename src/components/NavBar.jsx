@@ -3,6 +3,61 @@ import { Icon } from "@iconify/react";
 import { icons } from "../data";
 import { nearestIndex } from "../functions";
 import { socialLinks } from "../data";
+import { motion } from "framer-motion";
+
+const container = {
+  animate: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const navLinks = {
+  hidden: {
+    y: "100%",
+    transition: {
+      duration: 0.4,
+      type: "tween",
+      ease: "easeInOut",
+    },
+  },
+  animate: {
+    y: "0%",
+    transition: {
+      duration: 0.4,
+      type: "tween",
+      ease: "easeInOut",
+    },
+  },
+};
+
+const navHamContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const navHamLines = {
+  hidden: {
+    x: "-100%",
+    transition: {
+      duration: 0.4,
+      type: "tween",
+      ease: "easeInOut",
+    },
+  },
+  animate: {
+    x: "0%",
+    transition: {
+      duration: 0.4,
+      type: "tween",
+      ease: "easeInOut",
+    },
+  },
+};
 
 const NavBar = ({ navHeaders }) => {
   const [open, setOpen] = useState(false);
@@ -57,17 +112,32 @@ const NavBar = ({ navHeaders }) => {
 
   return (
     <>
-      <nav className="py-6 px-10 md:px-14 md:py-6 fixed top-0 left-0 right-0 z-[1]  flex backdrop-blur-sm bg-backgroundColor/70 overflow-hidden h-[70px] tracking-[0.165rem]">
-        <div className="flex  justify-between items-center w-full">
-          <div className="hidden md:flex text-[16px] font-bold text-darkColor">
+      <nav className="py-6 px-10 md:px-14 md:py-6 fixed top-0 left-0 right-0 z-[1] justify-center  flex backdrop-blur-sm bg-backgroundColor/70 overflow-hidden h-[70px] tracking-[0.165rem]">
+        <motion.div
+          animate="animate"
+          initial="hidden"
+          variants={container}
+          className="flex  justify-between items-center overflow-hidden w-full 2xl:w-[1024px]"
+        >
+          <motion.div
+            className="hidden md:flex text-[16px] font-bold text-darkColor"
+            variants={navLinks}
+          >
             <Icon icon={icons.robot} color="#496363" width="30" height="30" />
-          </div>
-          <div className="flex md:hidden text-[16px] font-bold text-darkColor">
+          </motion.div>
+          <motion.div
+            className="flex md:hidden text-[16px] font-bold text-darkColor"
+            variants={navLinks}
+          >
             {navHeaders[activeIndex].title}
-          </div>
+          </motion.div>
           <ul className="hidden md:flex justify-end items-center gap-6 tracking-[0.165rem] text-[14px] font-semibold">
             {navHeaders.map((item) => (
-              <li key={item.id} className="px-4 text-darkColor">
+              <motion.li
+                key={item.id}
+                className="px-4 text-darkColor "
+                variants={navLinks}
+              >
                 <a
                   className={`${
                     activeIndex == item.id
@@ -78,23 +148,24 @@ const NavBar = ({ navHeaders }) => {
                 >
                   {item.title}
                 </a>
-              </li>
+              </motion.li>
             ))}
           </ul>
-          <div
-            className="flex md:hidden flex-col gap-[6px]"
+          <motion.div
+            variants={navHamContainer}
+            className="flex md:hidden flex-col gap-[6px] overflow-hidden"
             onClick={handleClick}
           >
-            <div className="w-[22px] h-[2.5px] bg-darkColor rounded-full"></div>
-            <div className="w-[14px] h-[2.5px] bg-darkColor rounded-full"></div>
-            <div className="w-[22px] h-[2.5px] bg-darkColor rounded-full"></div>
-          </div>
-        </div>
+            <motion.div variants={navHamLines} className="w-[22px] h-[2.5px] bg-darkColor rounded-full"></motion.div>
+            <motion.div variants={navHamLines} className="w-[14px] h-[2.5px] bg-darkColor rounded-full"></motion.div>
+            <motion.div variants={navHamLines} className="w-[22px] h-[2.5px] bg-darkColor rounded-full"></motion.div>
+          </motion.div>
+        </motion.div>
       </nav>
       {open && (
         <nav className="flex md:hidden fixed top-0 right-0 bottom-0 w-[300px] z-[2] tracking-[0.165rem]">
           <div className="absolute top-0 right-0 bottom-0 w-[300px] z-[3] bg-darkColor"></div>
-          <div className="absolute top-0 right-0 bottom-0 w-[300px]  z-[3] bg-lightColor p-6">
+          <div className="absolute top-0 right-0 bottom-0 w-[300px]  z-[3] bg-lightColor py-6 px-10">
             <div className="relative flex justify-center items-center w-full h-full">
               <div
                 className="flex md:hidden flex-col gap-[6px] absolute top-0 right-[10px]"

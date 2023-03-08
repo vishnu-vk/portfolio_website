@@ -5,6 +5,7 @@ import About from "./components/About";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+
 function App() {
   const heroRef = useRef();
   const aboutRef = useRef();
@@ -38,7 +39,7 @@ function App() {
   ];
   return (
     <div className="bg-backgroundColor w-full flex justify-center h-full scroll-smooth">
-      <div className="w-full 2xl:w-[1024px] font-robotoSlab h-full select-none">
+      <div className="w-full  font-robotoSlab h-full select-none">
         <NavBar navHeaders={navHeaders}/>
         <Hero sectionRef={heroRef} />
         <About sectionRef={aboutRef} />

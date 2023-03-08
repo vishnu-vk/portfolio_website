@@ -52,7 +52,7 @@ const Contact = ({ sectionRef }) => {
         id="contact"
         className="w-full flex justify-center items-center relative bg-white p-10 md:p-14 scroll-mt-[70px]"
       >
-        <div className="flex flex-col md:flex-row  justify-center md:justify-between  md:items-center items-center gap-6  w-full">
+        <div className="flex 2xl:w-[1024px] flex-col md:flex-row  justify-center md:justify-between  md:items-center items-center gap-6  w-full">
           <div className="flex flex-col justify-center items-start gap-6">
             <div className="flex justify-center items-center h-[50px] gap-4">
               <Icon icon={icons.phone} color="#496363" height="35" width="35" />
