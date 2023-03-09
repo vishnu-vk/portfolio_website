@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 import { icons } from "../data";
 import { nearestIndex } from "../functions";
 import { socialLinks } from "../data";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const container = {
   animate: {
@@ -41,22 +41,70 @@ const navHamContainer = {
 };
 
 const navHamLines = {
-  hidden: {
+  hidden: (i) => ({
     x: "-100%",
+    // scaleX:0,
+    // opacity: 0,
+    // y:i===1 ? 8.125 : i===2 ? 0 : -8.125,
     transition: {
       duration: 0.4,
       type: "tween",
       ease: "easeInOut",
+    },
+  }),
+  animate: {
+    x: "0%",
+    // scaleX:1,
+    // opacity: 1,
+    // y:0,
+    transition: {
+      duration: 0.4,
+      type: "tween",
+      ease: "easeInOut",
+    },
+  },
+};
+
+const bgContainer = {
+  hidden: {
+    clipPath: "circle(0% at 100% 0)",
+    transition: {
+      duration: 0.8,
+      type: "tween",
+      ease: "easeInOut",
+      // staggerChildren: 0.08,
     },
   },
   animate: {
-    x: "0%",
+    clipPath: "circle(250% at 100% 0)",
+    transition: {
+      duration: 0.8,
+      type: "tween",
+      ease: "easeInOut",
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const navHamClose = {
+  hidden: (i) => ({
+    rotate: i === 1 ? 90 : -90,
+    opacity: 0,
     transition: {
       duration: 0.4,
       type: "tween",
       ease: "easeInOut",
     },
-  },
+  }),
+  animate: (i) => ({
+    rotate: i == 1 ? 45 : -45,
+    opacity: 1,
+    transition: {
+      duration: 0.4,
+      type: "tween",
+      ease: "easeInOut",
+    },
+  }),
 };
 
 const NavBar = ({ navHeaders }) => {
@@ -133,13 +181,9 @@ const NavBar = ({ navHeaders }) => {
           </motion.div>
           <ul className="hidden md:flex justify-end items-center gap-6 tracking-[0.165rem] text-[14px] font-semibold">
             {navHeaders.map((item) => (
-              <motion.li
-                key={item.id}
-                className="px-4 text-darkColor "
-                variants={navLinks}
-              >
+              <motion.li key={item.id} className="px-4" variants={navLinks}>
                 <a
-                  className={`${
+                  className={`transition-colors ease-in-out delay-[50] ${
                     activeIndex == item.id
                       ? "text-darkColor"
                       : "text-lightColor"
@@ -151,61 +195,107 @@ const NavBar = ({ navHeaders }) => {
               </motion.li>
             ))}
           </ul>
-          <motion.div
-            variants={navHamContainer}
-            className="flex md:hidden flex-col gap-[6px] overflow-hidden"
-            onClick={handleClick}
-          >
-            <motion.div variants={navHamLines} className="w-[22px] h-[2.5px] bg-darkColor rounded-full"></motion.div>
-            <motion.div variants={navHamLines} className="w-[14px] h-[2.5px] bg-darkColor rounded-full"></motion.div>
-            <motion.div variants={navHamLines} className="w-[22px] h-[2.5px] bg-darkColor rounded-full"></motion.div>
-          </motion.div>
+          <AnimatePresence>
+          {!open && (
+            <motion.div
+              variants={navHamContainer}
+              exit="hidden"
+              initial="hidden"
+              whileInView="animate"
+              className="flex md:hidden flex-col gap-[6px] overflow-hidden"
+              onClick={handleClick}
+            >
+              <motion.div
+                custom={1}
+                variants={navHamLines}
+                className="w-[22px] h-[2.5px] bg-darkColor rounded-full"
+              ></motion.div>
+              <motion.div
+                custom={2}
+                variants={navHamLines}
+                className="w-[14px] h-[2.5px] bg-darkColor rounded-full"
+              ></motion.div>
+              <motion.div
+                custom={3}
+                variants={navHamLines}
+                className="w-[22px] h-[2.5px] bg-darkColor rounded-full"
+              ></motion.div>
+            </motion.div>
+          )}
+          </AnimatePresence>
         </motion.div>
       </nav>
-      {open && (
-        <nav className="flex md:hidden fixed top-0 right-0 bottom-0 w-[300px] z-[2] tracking-[0.165rem]">
-          <div className="absolute top-0 right-0 bottom-0 w-[300px] z-[3] bg-darkColor"></div>
-          <div className="absolute top-0 right-0 bottom-0 w-[300px]  z-[3] bg-lightColor py-6 px-10">
-            <div className="relative flex justify-center items-center w-full h-full">
-              <div
-                className="flex md:hidden flex-col gap-[6px] absolute top-0 right-[10px]"
-                onClick={handleClick}
-              >
-                <div className="w-[2.5px] h-[25px] rotate-[45deg] absolute top-0 right-0 bg-backgroundColor rounded-full"></div>
-                <div className="w-[2.5px] h-[25px] rotate-[-45deg] absolute top-0 right-0 bg-backgroundColor rounded-full"></div>
+      <AnimatePresence>
+        {open && (
+          <nav className="flex md:hidden fixed top-0 right-0 bottom-0 w-[300px] z-[2] tracking-[0.165rem]">
+            {/* <motion.div variants={bgContainer} className="absolute top-0 right-0 bottom-0 w-[300px] z-[3] bg-darkColor"></motion.div> */}
+
+            <motion.div
+              initial="hidden"
+              whileInView="animate"
+              exit="hidden"
+              variants={bgContainer}
+              className="absolute top-0 right-0 bottom-0 w-[300px]  z-[3] bg-lightColor py-6 px-10 "
+            >
+              <div className="relative flex justify-center items-center w-full h-full">
+                <motion.div
+                  className="flex md:hidden flex-col gap-[6px] absolute top-0 right-[10px]"
+                  onClick={handleClick}
+                >
+                  <motion.div
+                    custom={1}
+                    variants={navHamClose}
+                    className="w-[2.5px] h-[25px] rotate-[45deg] absolute top-0 right-0 bg-backgroundColor rounded-full"
+                  ></motion.div>
+                  <motion.div
+                    custom={2}
+                    variants={navHamClose}
+                    className="w-[2.5px] h-[25px] rotate-[-45deg] absolute top-0 right-0 bg-backgroundColor rounded-full"
+                  ></motion.div>
+                </motion.div>
+                <ul className="flex flex-col justify-center items-center gap-4 tracking-[0.165rem] text-[14px] font-semibold">
+                  {navHeaders.map((item) => (
+                    <div key={item.id} className="flex overflow-hidden">
+                      <motion.li
+                        // key={item.id}
+                        variants={navLinks}
+                        className="px-4 text-darkColor"
+                      >
+                        <a
+                          className={`${
+                            activeIndex == item.id
+                              ? "text-darkColor"
+                              : "text-backgroundColor"
+                          }`}
+                          href={item.path}
+                        >
+                          {item.title}
+                        </a>
+                      </motion.li>
+                    </div>
+                  ))}
+                </ul>
+                <div className="absolute left-0 right-0 bottom-0 p-4 flex justify-center items-center gap-6">
+                  {socialLinks.map((item) => (
+                    <div key={item.id} className="flex overflow-hidden">
+                      <motion.div variants={navLinks}>
+                        <a href={item.url} key={item.id} target="_blank">
+                          <Icon
+                            icon={item.icon}
+                            color="#496363"
+                            width="24"
+                            height="24"
+                          />
+                        </a>
+                      </motion.div>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <ul className="flex flex-col justify-center items-center gap-4 tracking-[0.165rem] text-[14px] font-semibold">
-                {navHeaders.map((item) => (
-                  <li key={item.id} className="px-4 text-darkColor">
-                    <a
-                      className={`${
-                        activeIndex == item.id
-                          ? "text-darkColor"
-                          : "text-backgroundColor"
-                      }`}
-                      href={item.path}
-                    >
-                      {item.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              <div className="absolute left-0 right-0 bottom-0 p-4 flex justify-center items-center gap-6">
-                {socialLinks.map((item) => (
-                  <a href={item.url} key={item.id} target="_blank">
-                    <Icon
-                      icon={item.icon}
-                      color="#496363"
-                      width="24"
-                      height="24"
-                    />
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </nav>
-      )}
+            </motion.div>
+          </nav>
+        )}
+      </AnimatePresence>
     </>
   );
 };

@@ -48,3 +48,24 @@ export const projects = [
     url: "",
   },
 ];
+
+export const contactDetails = [
+  {
+    id:1,
+    icon:icons.phone,
+    title: "Call",
+    value: "+91 9744172369" 
+  },
+  {
+    id:2,
+    icon:icons.email,
+    title: "Mail",
+    value: "vvishnu898@gmail.com" 
+  },
+  {
+    id:3,
+    icon:icons.location,
+    title: "Location",
+    value: "Kerala/India" 
+  },
+]

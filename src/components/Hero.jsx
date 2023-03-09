@@ -106,8 +106,9 @@ const Hero = ({ sectionRef }) => {
           <motion.div
             className="hidden md:flex flex-col justify-center overflow-hidden items-center gap-6"
             initial="hidden"
-            animate="animate"
+            whileInView="animate"
             variants={container}
+            viewport={{ once: true, amount: 0.1 }}
           >
             {socialLinks.map((item) => (
               <motion.div
@@ -134,8 +135,9 @@ const Hero = ({ sectionRef }) => {
             <motion.div
               className="font-robotoSlab flex flex-col  font-bold gap-3  justify-center items-start"
               initial="hidden"
-              animate="animate"
+              whileInView="animate"
               variants={container}
+              viewport={{ once: true, amount: 0.1 }}
             >
               <div className="overflow-hidden flex">
                 <motion.div
@@ -185,7 +187,8 @@ const Hero = ({ sectionRef }) => {
           <motion.img
             src={heroImg}
             initial="hidden"
-            animate="animate"
+            whileInView="animate"
+            viewport={{ once: true, amount: 0.1 }}
             variants={image}
             className=" lg:w-[min(100%,500px)] lg:h-[min(100%,500px)] w-[250px] h-[250px]"
           />

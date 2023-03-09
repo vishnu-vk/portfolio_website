@@ -6,30 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const container = {
   animate: {
     transition: {
-      staggerChildren: 0.4,
-    },
-  },
-};
-
-const contents = {
-  hidden: {
-    opacity: 0,
-    y: 10,
-    // scale: "0%",
-    transition: {
-      duration: 0.4,
-      type: "tween",
-      ease: "easeInOut",
-    },
-  },
-  animate: {
-    // scale: "100%",
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.8,
-      type: "tween",
-      ease: "easeInOut",
+      staggerChildren: 0.08,
     },
   },
 };
@@ -44,14 +21,15 @@ const Projects = ({ sectionRef }) => {
       <div className="flex flex-col  justify-center items-start gap-6 2xl:w-[1024px]  w-full">
         <motion.div
           className="flex flex-wrap gap-6  justify-center md:justify-start"
-          initial="hidden"
-          // animate="animate"
-          whileInView="animate"
-          exit="hidden"
-          variants={container}
+          // initial="hidden"
+          // // animate="animate"
+          // whileInView="animate"
+          // exit="hidden"
+          // variants={container}
+          // viewport={{ once: true, amount: 0 }}
           // viewport={{ amount: 0.4, once: true }}
         >
-          <AnimatePresence>
+          
           {projects.map((item) => (
             <ProjectCard
               key={item.id}
@@ -63,7 +41,7 @@ const Projects = ({ sectionRef }) => {
               id={item.id}
             />
           ))}
-          </AnimatePresence>
+          {/* </AnimatePresence> */}
         </motion.div>
       </div>
     </section>

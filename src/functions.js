@@ -1,10 +1,10 @@
 import emailjs from "@emailjs/browser";
 
 const emailJSConfig = {
-  serviceKey: import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-  templateKey: import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-  publickKey: import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
-  privateKey: import.meta.env.VITE_APP_EMAILJS_PRIVATE_KEY,
+  serviceKey: import.meta.env.VITE_APP_SERVICE_ID,
+  templateKey: import.meta.env.VITE_APP_TEMPLATE_ID,
+  publickKey: import.meta.env.VITE_APP_PUBLIC_KEY,
+  privateKey: import.meta.env.VITE_APP_PRIVATE_KEY,
 };
 
 export const sendEmail = (data) => {

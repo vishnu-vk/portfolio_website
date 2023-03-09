@@ -65,8 +65,9 @@ const About = ({ sectionRef }) => {
           <motion.div
             className="flex flex-col lg:flex-row justify-center  items-center gap-6"
             initial="hidden"
-            animate="animate"
+            whileInView="animate"
             variants={container}
+            viewport={{ once: true, amount: 0.1 }}
           >
             <motion.img
               src={personalImg}
@@ -76,7 +77,6 @@ const About = ({ sectionRef }) => {
 
             <div
               className="flex flex-col justify-center items-center lg:items-start gap-2 "
-              // variants={contents}
             >
               <motion.h1
                 className="text-darkColor text-[18px] md:text-[20px] font-bold tracking-[0.165rem]"
