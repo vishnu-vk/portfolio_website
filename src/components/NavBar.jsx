@@ -67,18 +67,20 @@ const navHamLines = {
 
 const bgContainer = {
   hidden: {
-    clipPath: "circle(0% at 100% 0)",
+    // clipPath: "circle(0% at 100% 0)",
+    x:"100%",
     transition: {
-      duration: 0.8,
+      duration: 0.4,
       type: "tween",
       ease: "easeInOut",
       // staggerChildren: 0.08,
     },
   },
   animate: {
-    clipPath: "circle(250% at 100% 0)",
+    // clipPath: "circle(250% at 100% 0)",
+    x:"0%",
     transition: {
-      duration: 0.8,
+      duration: 0.4,
       type: "tween",
       ease: "easeInOut",
       staggerChildren: 0.08,
