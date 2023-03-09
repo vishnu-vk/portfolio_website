@@ -8,7 +8,7 @@ const emailJSConfig = {
 };
 
 export const sendEmail = (data) => {
-  console.log(emailJSConfig)
+  console.log("Sending email.")
   return emailjs.send(
     emailJSConfig.serviceKey,
     emailJSConfig.templateKey,
