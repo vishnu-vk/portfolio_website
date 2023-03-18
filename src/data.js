@@ -43,7 +43,7 @@ export const projects = [
     id: 2,
     title: "Arcana",
     img: arcanaImg,
-    description: "Experience different king of crossword puzzle",
+    description: "Experience different kind of crossword puzzles",
     techStack: "Django",
     url: "https://arcana.onrender.com/",
   },
