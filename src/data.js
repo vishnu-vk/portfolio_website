@@ -1,4 +1,4 @@
-import { notabookImg, portfolioImg } from "./assets";
+import { arcanaImg, notabookImg, portfolioImg } from "./assets";
 
 export const icons = {
   twitter: "ph:twitter-logo-fill",
@@ -41,12 +41,20 @@ export const projects = [
   },
   {
     id: 2,
+    title: "Arcana",
+    img: arcanaImg,
+    description: "Experience different king of crossword puzzle",
+    techStack: "Django",
+    url: "https://arcana.onrender.com/",
+  },
+  {
+    id: 3,
     title: "Portfolio Website",
     img: portfolioImg,
     description: "My personal portfolio website",
     techStack: "React, Tailwind CSS",
     url: "",
-  },
+  }
 ];
 
 export const contactDetails = [
