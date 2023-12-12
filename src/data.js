@@ -41,6 +41,14 @@ export const projects = [
   },
   {
     id: 2,
+    title: "CryptoApp",
+    img: notabookImg,
+    description: "A iOS application build to track crypto currencies",
+    techStack: "SwiftUI, Combine, CoreData, MVVM Architecture",
+    url: "",
+  },
+  {
+    id: 3,
     title: "Arcana",
     img: arcanaImg,
     description: "Experience different kind of crossword puzzles",
@@ -48,7 +56,7 @@ export const projects = [
     url: "https://arcana.onrender.com/",
   },
   {
-    id: 3,
+    id: 4,
     title: "Portfolio Website",
     img: portfolioImg,
     description: "My personal portfolio website",
