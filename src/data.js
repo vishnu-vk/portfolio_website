@@ -1,4 +1,4 @@
-import { arcanaImg, notabookImg, portfolioImg } from "./assets";
+import { arcanaImg, notabookImg, portfolioImg, cryptoImg } from "./assets";
 
 export const icons = {
   twitter: "ph:twitter-logo-fill",
@@ -42,7 +42,7 @@ export const projects = [
   {
     id: 2,
     title: "CryptoApp",
-    img: notabookImg,
+    img: cryptoImg,
     description: "A iOS application build to track crypto currencies",
     techStack: "SwiftUI, Combine, CoreData, MVVM Architecture",
     url: "",
